@@ -151,6 +151,7 @@ export interface CalendarProps {
   isDarkMode?: boolean;
   onThemeToggle?: () => void;
   hideViewSwitcher?: boolean;
+  hideSidebar?: boolean; // Hide the sidebar (mini calendar, filters, timezone)
   language?: 'en' | 'fr';
   onLanguageChange?: (lang: 'en' | 'fr') => void;
   renderEventForm?: (props: {

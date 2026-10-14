@@ -62,6 +62,7 @@ export const Scheduler: React.FC<CalendarProps> = ({
   onThemeToggle,
   translations, // New Prop
   hideViewSwitcher,
+  hideSidebar,
   language,
   onLanguageChange,
   locale // Date-fns locale
@@ -270,34 +271,37 @@ export const Scheduler: React.FC<CalendarProps> = ({
         />
         
         <div className="flex flex-1 overflow-hidden">
-            <motion.div
-                className={cn(
-                  "hidden md:block overflow-hidden",
-                )}
-                initial={false}
-                animate={{
-                  width: isSidebarOpen ? 256 : 0,
-                  opacity: isSidebarOpen ? 1 : 0,
-                }}
-                transition={{
-                  duration: 0.3,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-            >
-                <Sidebar
-                    currentDate={currentDate}
-                    onDateChange={handleDateChange}
-                    onViewChange={handleViewChange}
-                    onEventCreate={handleCreateEvent}
-                    timezone={timezone}
-                    onTimezoneChange={onTimezoneChange}
-                    className="w-full h-full"
-                    readOnly={readOnly}
-                    calendars={calendars}
-                    onCalendarToggle={onCalendarToggle}
-                    translations={t}
-                />
-            </motion.div>
+            {/* Sidebar - hide when hideSidebar is true */}
+            {!hideSidebar && (
+                <motion.div
+                    className={cn(
+                      "hidden md:block overflow-hidden",
+                    )}
+                    initial={false}
+                    animate={{
+                      width: isSidebarOpen ? 256 : 0,
+                      opacity: isSidebarOpen ? 1 : 0,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
+                >
+                    <Sidebar
+                        currentDate={currentDate}
+                        onDateChange={handleDateChange}
+                        onViewChange={handleViewChange}
+                        onEventCreate={handleCreateEvent}
+                        timezone={timezone}
+                        onTimezoneChange={onTimezoneChange}
+                        className="w-full h-full"
+                        readOnly={readOnly}
+                        calendars={calendars}
+                        onCalendarToggle={onCalendarToggle}
+                        translations={t}
+                    />
+                </motion.div>
+            )}
 
             <div className="flex-1 flex flex-col overflow-hidden relative">
                 {isLoading ? (

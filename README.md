@@ -100,6 +100,7 @@ function MyCalendar() {
 | `readOnly` | `boolean` | Disable editing |
 | `isLoading` | `boolean` | Show loading skeletons |
 | `hideViewSwitcher` | `boolean` | Hide view switcher |
+| `hideSidebar` | `boolean` | Hide sidebar (mini calendar, filters, timezone selector) |
 | `renderEventForm` | `(props) => ReactNode` | Custom event form |
 
 ## Types
